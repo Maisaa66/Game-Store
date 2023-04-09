@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow p-3 position-absolute top-75 start-0  bg-white">
+    <div class="shadow p-3 position-absolute top-75 start-0  bg-white" style="z-index: 3;">
         <p class="text-secondry">Please add your account details</p>
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
