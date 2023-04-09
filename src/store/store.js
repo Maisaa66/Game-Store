@@ -1,7 +1,4 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
+import { createStore } from 'vuex';
 
 //create store
 import * as state from './state';
@@ -11,9 +8,11 @@ import * as getters from './getters';
 
 
 
-export default new Vuex.Store({
+ const store = createStore({
 state,
 getters,
 mutations,
 actions
 })
+
+export default store;
