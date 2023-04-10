@@ -17,7 +17,7 @@
       spaceBetween: 20,
     },
   }">
-    <swiper-slide v-for="genre in genres" :key="genre" class="btn btn-outline-secondary text-sm-nowrap">{{ genre }}</swiper-slide>
+    <swiper-slide v-for="genre in genres" :key="genre" class="btn btn-outline-secondary text-sm-nowrap" @click="selectedGenre=genre, toggle()">{{ genre }} <span v-if="selectedGenre===genre && checked"><svg class="feather feather-check" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span></swiper-slide>
 
   </swiper>
 </template>
@@ -34,7 +34,7 @@ import './style.css';
 
 // import required modules
 import { Navigation } from 'swiper';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -46,10 +46,17 @@ export default {
   setup() {
     const store = useStore();
     const genres = computed(() => store.getters.getCategories)
-    
+    const selectedGenre = ref("");
+    const checked =  ref(false);
+    function toggle(){
+      checked.value=!checked.value
+    }
     return {
       modules: [Navigation],
-      genres
+      genres,
+      selectedGenre,
+      toggle,
+      checked
     };
   },
 };
