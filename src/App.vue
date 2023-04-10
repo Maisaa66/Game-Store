@@ -1,17 +1,21 @@
 <template>
   <navBar></navBar>
+  <featuredGame></featuredGame>
   <recommendedGames></recommendedGames>
+  <div>gjyhgjhg</div>
 </template>
 
 <script>
 import navBar from "./components/Navbar.vue";
 import recommendedGames from "./components/recommended.vue"
+import featuredGame from "./components/featuredGame.vue";
 export default {
 
   name: 'App',
   components: {
     navBar,
-    recommendedGames
+    recommendedGames,
+    featuredGame
   }
 }
 </script>
@@ -23,6 +27,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  background-color: rgb(180, 128, 128);
+  background-color: rgb(237, 237, 237);
+  height: auto;
 }
 </style>

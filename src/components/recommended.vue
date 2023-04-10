@@ -1,6 +1,13 @@
 <template>
     <div class=" m-auto shadow p-4 w-75">
-        <p class="text-secondary banger-font">Most Recommended</p>
+        <div class="d-flex ">
+            <div class="col-9">
+                <p class="text-secondary banger-font">Most Recommended</p>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center mb-3">
+                <span class="ms-2 primary">SEE ALL</span>
+                <button class="btn btn-primary rounded-circle">&gt;</button></div>
+        </div>
         <swiper :navigation="true" :modules="modules" class="mySwiper wrap " :slidesPerView="6" :breakpoints="{
             '@0.00': {
                 slidesPerView: 1,
@@ -20,13 +27,13 @@
             },
         }">
 
-            <swiper-slide v-for="game in this.games" :key="game.id">
+            <swiper-slide v-for="game in recommendedGames" :key="game.id">
                 <div class="card bg-transparent border border-0" style="width: 12rem;">
                     <img :src="game.thumbnail" class="rounded" alt="...">
                     <div class="card-body px-2">
                         <h5 class="card-title banger-font-bold text-left  " style="font-size: 14px;   white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;">{{ game.title }}</h5>
+          overflow: hidden;
+          text-overflow: ellipsis;">{{ game.title }}</h5>
                         <!-- <p class="card-text banger-font-light" style="font-size: 12px;">{{ game.short_description.length > 80 ? game.short_description.substring(0,80) + "....": game.short_description }}</p> -->
                         <a href="#" class="btn btn-primary banger-font-light w-100 align-self-end">MORE INFO</a>
                     </div>
@@ -62,9 +69,9 @@ export default {
     setup() {
 
         const store = useStore();
-        let games = computed(() => {
+        let recommendedGames = computed(() => {
             // console.log(store.state.games);
-            return store.state.games;
+            return store.getters.getRecommendedGames;
         })
         onMounted(() => {
             store.dispatch('getAllGames');
@@ -72,7 +79,7 @@ export default {
         })
         return {
             modules: [Navigation],
-            games
+            recommendedGames
         };
     },
 };
