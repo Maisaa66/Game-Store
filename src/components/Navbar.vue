@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow d-flex flex-column">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow d-flex flex-column mb-3">
         <div class="container-fluid">
             <div>
                 <a class="navbar-brand primary montserrat-font align-text-center" href="#">
