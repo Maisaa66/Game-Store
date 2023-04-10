@@ -1,11 +1,11 @@
 <template>
   <swiper :navigation="true" :modules="modules" class="mySwiper" :slidesPerView="6" :breakpoints="{
     '@0.00': {
-      slidesPerView: 3,
+      slidesPerView: 2,
       spaceBetween: 10,
     },
     '@0.75': {
-      slidesPerView: 3,
+      slidesPerView: 2,
       spaceBetween: 10,
     },
     '@1.00': {
@@ -17,11 +17,8 @@
       spaceBetween: 20,
     },
   }">
-    <swiper-slide></swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide><swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 4</swiper-slide><swiper-slide>Slide 5</swiper-slide>
-    <swiper-slide>Slide 6</swiper-slide><swiper-slide>Slide 7</swiper-slide>
-    <swiper-slide>Slide 8</swiper-slide><swiper-slide>Slide 9</swiper-slide>
+    <swiper-slide v-for="genre in genres" :key="genre" class="btn btn-outline-secondary text-sm-nowrap">{{ genre }}</swiper-slide>
+
   </swiper>
 </template>
 <script>
@@ -37,6 +34,8 @@ import './style.css';
 
 // import required modules
 import { Navigation } from 'swiper';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   name: "categoriesSlider",
@@ -45,9 +44,36 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const store = useStore();
+    const genres = computed(() => store.getters.getCategories)
+    
     return {
       modules: [Navigation],
+      genres
     };
   },
 };
 </script>
+<style lang="scss" scoped>
+$primary : #572589;
+.btn-outline-secondary{
+    color: rgb(39, 39, 39);
+    border: 1px solid;
+    border-color: #434343;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: $primary;
+    --bs-btn-border-color: $primary;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #6c2fa9;
+    --bs-btn-hover-border-color: #7131b0;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #572589;
+    --bs-btn-active-border-color: #572589;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: $primary;
+    --bs-btn-disabled-border-color: $primary;
+    border-radius: 25px;
+}
+</style>
