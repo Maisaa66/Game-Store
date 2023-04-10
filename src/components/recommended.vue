@@ -20,14 +20,13 @@
         },
     }">
 
-        <swiper-slide>
-            <div class="card bg-transparent border border-0" style="width: 13rem;">
+        <swiper-slide v-for="game in this.games" :key="game.id" > 
+            <div class="card bg-transparent border border-0" style="width: 18rem;" >
                 <img src="../../public/Images/greece.jpg" class="rounded" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title banger-font-bold text-left">Card title</h5>
-                    <p class="card-text banger-font-light">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary banger-font-light w-100">MORE INFO</a>
+                <div class="card-body px-2">
+                    <h5 class="card-title banger-font-bold text-left no-wrap" style="font-size: 12px;">{{ game.title }}</h5>
+                    <p class="card-text banger-font-light" style="font-size: 12px;">{{ game.short_description.length > 80 ? game.short_description.substring(0,80) + "....": game.short_description }}</p>
+                    <a href="#" class="btn btn-primary banger-font-light w-100 align-self-end">MORE INFO</a>
                 </div>
             </div>
         </swiper-slide>
@@ -49,6 +48,8 @@ import './style.css';
 
 // import required modules
 import { Navigation } from 'swiper';
+import { computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   name: "recommendedGames",
@@ -57,8 +58,19 @@ export default {
     SwiperSlide,
   },
   setup() {
+   
+    const store = useStore();
+    let games = computed(()=>{
+        // console.log(store.state.games);
+        return store.state.games;
+    })
+    onMounted(()=>{
+        store.dispatch('getAllGames');
+        
+    })
     return {
       modules: [Navigation],
+      games
     };
   },
 };
