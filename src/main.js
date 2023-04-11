@@ -6,10 +6,13 @@ import store from "./store/store";
 import { createRouter, createWebHistory } from 'vue-router';
 import homePage from './Pages/Home.vue';
 import errorPage from "./Pages/Error.vue";
-import detailPage from './Pages/Detail.vue'
+import detailPage from './Pages/Detail.vue';
+import recommendedPage from './Pages/recommended.vue'
 const routes = [
     { path: "/", component: homePage },
     { path: "/details/:id", component: detailPage },
+    {path:"/recommended", component:recommendedPage},
+
     {        path:'/:NotFound(.*)*',
     component:errorPage,
     meta:{
