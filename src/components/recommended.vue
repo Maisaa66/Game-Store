@@ -1,5 +1,5 @@
-<template>
-    <div class=" m-auto shadow p-4 w-75">
+<template >
+    <div class=" m-auto shadow p-4 w-75 rounded bg-white mb-3">
         <div class="d-flex ">
             <div class="col-9">
                 <p class="text-secondary banger-font">Most Recommended</p>
@@ -57,7 +57,7 @@ import './style.css';
 
 // import required modules
 import { Navigation } from 'swiper';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -73,10 +73,7 @@ export default {
             // console.log(store.state.games);
             return store.getters.getRecommendedGames;
         })
-        onMounted(() => {
-            store.dispatch('getAllGames');
 
-        })
         return {
             modules: [Navigation],
             recommendedGames
