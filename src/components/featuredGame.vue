@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex shadow w-75 m-auto mb-3 rounded">
+    <div class="d-flex shadow w-75 m-auto mb-3 rounded bg-white">
         <div class="row">
             <div class="col-8 w-100">
                 <img :src="game.thumbnail" class="img-fluid" style="width: 700px; height: 250px;">
@@ -12,10 +12,10 @@
             <h3 class="card-title banger-font-bold">{{ game.title }}</h3>
             <h5 class="card-text  banger-font-bold " style="font-size: 15px;">{{ game.genre }}</h5>
             <p class="card-text  banger-font-light" style=" white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;">{{ game.short_description }}</p>
+                          overflow: hidden;
+                          text-overflow: ellipsis;">{{ game.short_description }}</p>
             <p class="card-text"><small class="text-body-secondary">300k Downloads</small></p>
-            <button class="btn btn-primary">MORE INFO</button>
+            <button @click="gotoDetail(game.id)" class="btn btn-primary">MORE INFO</button>
 
         </div>
 
@@ -26,15 +26,22 @@
 
 <script>
 import { computed } from 'vue';
-import { useStore } from 'vuex'
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
 export default {
     name: "featuredGame",
     setup() {
         const store = useStore();
+        const router = useRouter();
         const game = computed(() => store.getters.getGame);
-
+        function gotoDetail(id) {
+            router.push(`/details/${id}`)
+        }
         return {
-            game
+            game,
+            gotoDetail
+
         }
     }
 }

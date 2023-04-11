@@ -3,4 +3,27 @@ import App from './App.vue'
 import "../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css"
 import "../node_modules/bootstrap/dist/js/bootstrap.min";
 import store from "./store/store";
-createApp(App).use(store).mount('#app')
+import { createRouter, createWebHistory } from 'vue-router';
+import homePage from './Pages/Home.vue';
+import errorPage from "./Pages/Error.vue";
+import detailPage from './Pages/Detail.vue'
+const routes = [
+    { path: "/", component: homePage },
+    { path: "/details/:id", component: detailPage },
+    {        path:'/:NotFound(.*)*',
+    component:errorPage,
+    meta:{
+        hideNavbar:true
+    }}
+  ];
+  
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes
+});
+
+createApp(App)
+    .use(store)
+    .use(router)
+    .mount('#app');

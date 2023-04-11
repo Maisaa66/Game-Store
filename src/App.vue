@@ -1,21 +1,15 @@
 <template>
-  <navBar></navBar>
-  <featuredGame></featuredGame>
-  <recommendedGames></recommendedGames>
-  <div>gjyhgjhg</div>
+  <Navbar v-if="!$route.meta.hideHeader" />
+  <router-view></router-view>
 </template>
 
 <script>
-import navBar from "./components/Navbar.vue";
-import recommendedGames from "./components/recommended.vue"
-import featuredGame from "./components/featuredGame.vue";
+import Navbar from './components/Navbar.vue';
 export default {
 
   name: 'App',
   components: {
-    navBar,
-    recommendedGames,
-    featuredGame
+    Navbar
   }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow d-flex flex-column mb-3">
+    <nav class="navbar navbar-expand-lg bg-white shadow d-flex flex-column mb-3">
         <div class="container-fluid">
             <div>
-                <a class="navbar-brand primary montserrat-font align-text-center" href="#">
+                <router-link to='/' class="navbar-brand primary montserrat-font align-text-center" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95"
                         height="90" viewBox="0 0 104 104" class="d-inline-block">
                         <g id="Logo" transform="translate(24 24)">
@@ -11,7 +11,7 @@
                         </g>
                     </svg>
                     <span>Game Store</span>
-                </a>
+                </router-link>
 
             </div>
 
