@@ -4,7 +4,7 @@
             <div class="col-9">
                 <p class="text-secondary banger-font">Most Recommended</p>
             </div>
-            <div class="col-3 d-flex justify-content-end align-items-center mb-3">
+            <div @click="displayAll" class="col-3 d-flex justify-content-end align-items-center mb-3" style="cursor: pointer;">
                 <span class="ms-2 primary">SEE ALL</span>
                 <button class="btn btn-primary rounded-circle">&gt;</button></div>
         </div>
@@ -59,6 +59,7 @@ import './style.css';
 import { Navigation } from 'swiper';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
     name: "popularGames",
@@ -69,14 +70,18 @@ export default {
     setup() {
 
         const store = useStore();
+        const router = useRouter()
         let popularGames = computed(() => {
             // console.log(store.state.games);
             return store.getters.getPopularGames;
         })
-
+        function displayAll(){
+            router.push(`/recommended`);
+        }
         return {
             modules: [Navigation],
-            popularGames
+            popularGames,
+            displayAll
         };
     },
 };

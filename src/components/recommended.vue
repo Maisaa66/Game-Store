@@ -4,9 +4,10 @@
             <div class="col-9">
                 <p class="text-secondary banger-font">Most Recommended</p>
             </div>
-            <div class="col-3 d-flex justify-content-end align-items-center mb-3">
+            <div @click="displayAll"  class="col-3 d-flex justify-content-end align-items-center mb-3" style="cursor: pointer;">
                 <span class="ms-2 primary">SEE ALL</span>
-                <button class="btn btn-primary rounded-circle">&gt;</button></div>
+                <button class="btn btn-primary rounded-circle">&gt;</button>
+            </div>
         </div>
         <swiper :navigation="true" :modules="modules" class="mySwiper wrap " :slidesPerView="6" :breakpoints="{
             '@0.00': {
@@ -31,11 +32,12 @@
                 <div class="card bg-transparent border border-0" style="width: 12rem;">
                     <img :src="game.thumbnail" class="rounded" alt="...">
                     <div class="card-body px-2">
-                        <h5 class="card-title banger-font-bold text-left  " style="font-size: 14px;   white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;">{{ game.title }}</h5>
+                        <h5 class="card-title banger-font-bold text-left  "
+                            style="font-size: 14px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{
+                                game.title }}</h5>
                         <!-- <p class="card-text banger-font-light" style="font-size: 12px;">{{ game.short_description.length > 80 ? game.short_description.substring(0,80) + "....": game.short_description }}</p> -->
-                        <a href="#" class="btn btn-primary banger-font-light w-100 align-self-end">MORE INFO</a>
+                        <button @click="showDetails(game.id)"
+                            class="btn btn-primary banger-font-light w-100 align-self-end">MORE INFO</button>
                     </div>
                 </div>
             </swiper-slide>
@@ -59,6 +61,7 @@ import './style.css';
 import { Navigation } from 'swiper';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
     name: "recommendedGames",
@@ -69,14 +72,24 @@ export default {
     setup() {
 
         const store = useStore();
+        const router = useRouter();
         let recommendedGames = computed(() => {
             // console.log(store.state.games);
             return store.getters.getRecommendedGames;
         })
 
+        function showDetails(id) {
+            router.push(`/details/${id}`)
+        }
+
+        function displayAll(){
+            router.push(`/recommended`);
+        }
         return {
             modules: [Navigation],
-            recommendedGames
+            recommendedGames,
+            showDetails,
+            displayAll
         };
     },
 };
@@ -126,5 +139,4 @@ $primary : #572589;
     --bs-btn-disabled-color: #fff;
     --bs-btn-disabled-bg: $primary;
     --bs-btn-disabled-border-color: $primary;
-}
-</style>
+}</style>

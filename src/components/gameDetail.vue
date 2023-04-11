@@ -3,7 +3,7 @@
         <div class="mb-3">
         <div class="m-auto shadow bg-white w-75 rounded">
         <div class="row rounded">
-            <img :src="game.thumbnail" class="img-fluid rounded" style="width: 100%; height: 200px;">
+            <img :src="game.thumbnail" class="img-fluid rounded" style="width: 100%; height: 300px;">
         </div>
 
     </div>

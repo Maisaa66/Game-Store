@@ -1,10 +1,10 @@
 <template>
-    <div class="card mb-3 m-auto w-75">
+    <div class="card mb-3 m-auto w-75 shadow">
         <div class="row no-gutters">
             <div class="col-md-7">
                 <img :src="game.thumbnail" class="card-img" alt="..." />
             </div>
-            <div class="col-md-4 m-auto">
+            <div class="col-md-4 m-auto p-sm-5">
                 <h3 class="card-title banger-font-bold">{{ game.title }}</h3>
                 <h5 class="card-text banger-font-bold" style="font-size: 15px">
                     {{ game.genre }}

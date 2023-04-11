@@ -1,5 +1,5 @@
 <template>
-    <div class="m-auto d-flex flex-wrap w-75 justify-content-center bg-white rounded">
+    <div class="m-auto d-flex flex-wrap w-75 justify-content-center bg-white rounded shadow">
         <div v-for="game in popularGames" :key="game.id" class="m-3">
             <div class="card bg-transparent border border-0" style="width: 12rem;">
                 <img :src="game.thumbnail" class="rounded" alt="...">
